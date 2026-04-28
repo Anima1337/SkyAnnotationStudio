@@ -6,7 +6,7 @@
 
    <platform os="all" arch="noarch" version="1.8.9:9.9.9">
       <package
-         fileName="https://raw.githubusercontent.com/Anima1337/SkyAnnotationStudio/zigpy/SkyAnnotationStudio-1.0.0.zip"
+         fileName="https://raw.githubusercontent.com/Anima1337/SkyAnnotationStudio/refs/heads/zigpy/SkyAnnotationStudio-1.0.0.zip"
          sha1="4d9f2124f05b58937e815741c69d51d50e1010c3"
          type="script"
          releaseDate="20260412">
