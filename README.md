@@ -9,7 +9,7 @@ It queries SIMBAD for objects in your image, draws an annotated overview, create
 Add this repository URL in PixInsight:
 
 ```text
-https://store.anyfile.cc/pixinsight/SkyAnnotationStudio/
+https://raw.githubusercontent.com/Anima1337/SkyAnnotationStudio/main/
 ```
 
 In PixInsight, go to:
