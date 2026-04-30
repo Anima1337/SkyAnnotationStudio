@@ -128,6 +128,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
 
+### 1.1.4
+
+- Removed the named navigation previews from `SkyAnnotFinal` again because they added clutter and were not the desired interaction model.
+- Kept the selected-preview crash fix from `1.1.3`.
+- Kept cleanup for legacy `SkyAnnotSelectedContext` previews on run, reset, close button, and dialog close.
+
 ### 1.1.3
 
 - Fixed a selected-preview crash caused by dialog-side context crops calling an engine-only helper.
