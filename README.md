@@ -72,8 +72,27 @@ For most images, the defaults are a good starting point.
 | `Patch scale %` | Global crop scale. Lower values zoom in, higher values zoom out. |
 | `Preview patch` | Rendered tile size in the preview grid. This affects grid resolution, not the selected sky area. |
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
+| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, or `Name` for alphabetical ordering. |
+| `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
 | `Reset to defaults` | Restores the default settings. |
 | `Export CSV` | Exports the latest result table as CSV. |
+
+## Result Table And Preview Inspector
+
+After a successful run, the result table lists the objects that were actually used for the final outputs.
+
+The table includes:
+
+- Display ID.
+- Main SIMBAD ID.
+- Catalogue/type.
+- RA/Dec.
+- Crop patch size.
+- Measured visibility score.
+
+Click a row in the result table to inspect that object in the embedded preview panel below the table. The panel stays hidden until a result grid has been built, then shows a two-part inspector: a zoomed overview context on the left and the generated crop on the right.
+
+The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects.
 
 ## Tips
 
@@ -84,6 +103,10 @@ For most images, the defaults are a good starting point.
 - If the preview grid looks too low-resolution, increase `Preview patch`.
 - If the final image becomes very large, reduce `Preview patch` or `Max rows`.
 - If labels clutter the overview, use `Numbers` label mode.
+- Use `Sort by > Visible size` when you want the most prominent galaxies first.
+- Use `Sort by > Image contrast` when you want the clearest detected objects first.
+- Use `Visibility filter > Strict` if too many blank-looking previews remain.
+- Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
 
 ## How It Works
 
@@ -102,6 +125,36 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 - Internet access is required for SIMBAD queries.
 
 ## Changelog
+
+Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.1.1
+
+- Kept the embedded preview inspector hidden until a result grid exists.
+- Changed the inspector to show both a zoomed overview context and the selected preview crop.
+- Hid the PixInsight Process Console after a successful run to reduce workspace obstruction.
+- Clarified that the result table is the interactive selector because generated PixInsight image windows are static outputs.
+
+### 1.1.0
+
+- Replaced external selected-preview image windows with an embedded preview inspector in the script dialog.
+- Clicking a result table row now updates the enlarged preview panel directly.
+- Automatically shows the first preview after a successful run.
+- Improved usability when the Process Console or modal script dialog blocks access to separate PixInsight windows.
+
+### 1.0.9
+
+- Added initial result-table click handling.
+- Stored generated preview patches with the result data.
+- Added selected-object preview support for table rows.
+
+### 1.0.8
+
+- Added `Sort by` output ordering modes: default, visible size, image contrast, distance from centre, and name.
+- Added `Visibility filter` modes: off, permissive, balanced, and strict.
+- Added patch size and visibility score columns to the result table.
+- Added patch size and visibility score fields to CSV export.
+- Logged the selected sort and visibility modes for easier debugging.
 
 ### 1.0.7
 
