@@ -130,9 +130,9 @@ Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is 
 
 ### 1.1.4
 
-- Removed the named navigation previews from `SkyAnnotFinal` again because they added clutter and were not the desired interaction model.
-- Kept the selected-preview crash fix from `1.1.3`.
-- Kept cleanup for legacy `SkyAnnotSelectedContext` previews on run, reset, close button, and dialog close.
+- Fixed selected-preview inspection after a completed run.
+- Prevented legacy helper previews from remaining open after run, reset, or close.
+- Improved cleanup for temporary preview state without adding extra previews to generated output images.
 
 ### 1.1.3
 
