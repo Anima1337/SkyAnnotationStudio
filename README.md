@@ -128,6 +128,17 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
 
+### 1.1.3
+
+- Fixed a selected-preview crash caused by dialog-side context crops calling an engine-only helper.
+- Kept the source-image context crop behaviour from 1.1.2, but made the clamp calculation local to the inspector.
+
+### 1.1.2
+
+- Fixed selected-preview inspector scaling so large context crops are fitted into the panel instead of being clipped.
+- Built the inspector context crop on demand from the source image window for more reliable object positioning.
+- Avoided storing hundreds of large context bitmaps in memory.
+
 ### 1.1.1
 
 - Kept the embedded preview inspector hidden until a result grid exists.
