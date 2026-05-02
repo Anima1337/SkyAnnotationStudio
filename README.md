@@ -67,7 +67,12 @@ For most images, the defaults are a good starting point.
 | `Main object` | Your primary target, for example `M81`. This object is sorted first and receives the largest crop. |
 | `Title` | Text shown on the annotated overview image. |
 | `Catalogue filters` | Controls which catalogue/type prefixes are kept. Remove `SDSS` or `Gaia` if you want fewer very faint candidates. |
+| `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, and `Deep field`. Presets do not change the current source image, main object, or title. |
 | `Label mode` | Chooses whether labels show numbers, object IDs, or both. |
+| `Label length` | Chooses short, medium, or full object names below preview tiles. `Medium` keeps the classic compact labels. |
+| `Object type` | Controls the SIMBAD object family. Use `Galaxies only` for the normal workflow, `Galaxies, quasars off` to suppress QSO/blazar-like entries, `Known galaxies priority` to avoid survey-only candidates, or `Stars only` for stellar fields. |
+| `Catalogue priority` | Chooses which catalogue aliases win during naming and duplicate handling. Prefer Messier, prefer NGC/IC, favour known catalogues, or hide Gaia entries when a stronger duplicate is nearby. |
+| `Experimental SIMBAD size crops` | Uses SIMBAD galaxy major/minor axis values, where available, to enlarge crops for physically large or elongated galaxies. |
 | `Box size` | Base crop size in source pixels. Increase it to zoom out object previews. |
 | `Patch scale %` | Global crop scale. Lower values zoom in, higher values zoom out. |
 | `Preview patch` | Rendered tile size in the preview grid. This affects grid resolution, not the selected sky area. |
@@ -103,6 +108,12 @@ The rendered PixInsight image windows are static outputs, so the result table is
 - If the preview grid looks too low-resolution, increase `Preview patch`.
 - If the final image becomes very large, reduce `Preview patch` or `Max rows`.
 - If labels clutter the overview, use `Numbers` label mode.
+- Save your favourite processing setup into one of the preset slots when a workflow feels right.
+- Enable `Experimental SIMBAD size crops` when large or elongated galaxies are being cropped too tightly.
+- Use `Label length > Full` when preparing outputs where complete object names matter more than compact spacing.
+- Use `Object type > Galaxies, quasars off` if quasar-like catalogue entries are not useful for your presentation.
+- Use `Catalogue priority > Prefer NGC/IC` when you want classic NGC/IC names to win over Messier aliases where possible.
+- Use `Catalogue priority > Hide Gaia if duplicate exists` if Gaia survey entries are causing repeated near-identical previews.
 - Use `Sort by > Visible size` when you want the most prominent galaxies first.
 - Use `Sort by > Image contrast` when you want the clearest detected objects first.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
@@ -121,12 +132,27 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 - SIMBAD can list objects that are technically in the field but too faint to be visible in your exposure.
 - Very high `Max rows` values can still include faint or ambiguous objects.
 - The visibility filter is based on image contrast, so it cannot perfectly know whether an object is meaningful to you.
+- SIMBAD object dimensions are incomplete and heterogeneous, so experimental size-based crops are helpful but not guaranteed for every object.
 - The script needs a solved image. It does not run plate solving itself.
 - Internet access is required for SIMBAD queries.
 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.1.6
+
+- Added persistent processing presets with `Galaxy field`, `Widefield`, `Messier target`, and `Deep field` slots.
+- Added an experimental SIMBAD-size crop option that uses major/minor axis metadata where available.
+- Improved visibility scoring so bright stars near crop edges are less likely to keep otherwise empty preview patches.
+- Extended SIMBAD queries and result handling with galaxy dimension metadata for future crop tuning.
+
+### 1.1.5
+
+- Added `Label length` control with Short, Medium, and Full preview-grid label options.
+- Added `Object type` filtering modes for galaxies-only, galaxies without quasar-like entries, known-galaxy-priority output, and stars-only queries.
+- Added `Catalogue priority` control for Messier-first, NGC/IC-first, known-catalogue-first, and Gaia-duplicate suppression workflows.
+- Included the selected object type and catalogue-priority mode in the run log for easier reproducibility.
 
 ### 1.1.4
 
