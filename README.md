@@ -140,6 +140,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
 
+### 1.1.7
+
+- Tightened `Strict` visibility filtering so edge stars cannot keep otherwise empty preview crops by themselves.
+- Added centre-evidence requirements for `Balanced` and `Strict` visibility modes.
+- Reduced the influence of global crop contrast in visibility scoring to make false positives less common.
+
 ### 1.1.6
 
 - Added persistent processing presets with `Galaxy field`, `Widefield`, `Messier target`, and `Deep field` slots.
