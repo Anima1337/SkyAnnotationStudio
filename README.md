@@ -67,7 +67,7 @@ For most images, the defaults are a good starting point.
 | `Main object` | Your primary target, for example `M81`. This object is sorted first and receives the largest crop. |
 | `Title` | Text shown on the annotated overview image. |
 | `Catalogue filters` | Controls which catalogue/type prefixes are kept. Remove `SDSS` or `Gaia` if you want fewer very faint candidates. |
-| `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, and `Deep field`. Type a new name before saving to create a custom preset. |
+| `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, `Deep field`, `Messier showcase`, `NGC/IC showcase`, `Deep survey`, and `Minimal clean labels`. Type a new name before saving to create a custom preset. |
 | `Label mode` | Chooses whether labels show numbers, object IDs, or both. |
 | `Label length` | Chooses short, medium, or full object names below preview tiles. `Medium` keeps the classic compact labels. |
 | `Object type` | Controls the SIMBAD object family. Use `Galaxies only` for the normal workflow, `Galaxies, quasars off` to suppress QSO/blazar-like entries, `Known galaxies priority` to avoid survey-only candidates, or `Stars only` for stellar fields. |
@@ -77,13 +77,13 @@ For most images, the defaults are a good starting point.
 | `Patch scale %` | Global crop scale. Lower values zoom in, higher values zoom out. |
 | `Preview patch` | Rendered tile size in the preview grid. This affects grid resolution, not the selected sky area. |
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
-| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, or `Name` for alphabetical ordering. |
+| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, or `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
 | `Output mode` | Quick presentation style: scientific, showcase, poster, or discovery map. |
 | `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. |
 | `Highlight showcase objects` | Draws stronger boxes/labels for the first five output objects. |
 | `Colour-code object classes` | Uses different annotation colours for main targets, classic galaxies, quasars, and stellar catalogue entries. |
-| `Show advanced controls` | Reveals manual keep/remove, CSV/HTML report export, redshift, and auto-title controls. |
+| `Show advanced controls` | Reveals manual keep/remove, auto-review scrolling, CSV/HTML report export, redshift, and auto-title controls. |
 | `Reset to defaults` | Restores the default settings. |
 
 ## Result Table And Preview Inspector
@@ -102,6 +102,8 @@ The table includes:
 Click a row in the result table to inspect that object in the embedded preview panel below the table. The panel stays hidden until a result grid has been built, then shows a two-part inspector: a zoomed overview context on the left and the generated crop on the right.
 
 The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects. With advanced controls enabled, selected rows can be marked as kept or removed, then re-rendered with `Render kept`.
+
+Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys.
 
 ## Tips
 
@@ -123,8 +125,10 @@ The rendered PixInsight image windows are static outputs, so the result table is
 - Use `Catalogue priority > Hide Gaia if duplicate exists` if Gaia survey entries are causing repeated near-identical previews.
 - Use `Sort by > Visible size` when you want the most prominent galaxies first.
 - Use `Sort by > Image contrast` when you want the clearest detected objects first.
+- Use `Sort by > Redshift` for a depth-style presentation; objects without SIMBAD redshift are kept after the redshift-ranked objects.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
 - Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
+- Use `Start auto-review` in the advanced controls to step through previews hands-free while manually toggling obvious false positives.
 
 ## How It Works
 
@@ -146,6 +150,16 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.1.9
+
+- Added built-in priority presets: `Messier showcase`, `NGC/IC showcase`, `Deep survey`, and `Minimal clean labels`.
+- Improved `Redshift` sorting to use approximate farthest-to-nearest cosmological depth ordering, with missing-redshift objects sorted afterwards.
+- Added double-click toggling on the result table `Keep` column.
+- Kept result-table keyboard focus after keep/remove actions so arrow-key curation can continue immediately.
+- Added advanced auto-review scrolling with user-configurable preview delay.
+- Colour-coded preview-grid numbers now match the object class colour when class colouring is enabled.
+- Reduced default dialog height and added persistent remembered dialog size between launches.
 
 ### 1.1.8
 
