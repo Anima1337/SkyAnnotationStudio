@@ -67,7 +67,7 @@ For most images, the defaults are a good starting point.
 | `Main object` | Your primary target, for example `M81`. This object is sorted first and receives the largest crop. |
 | `Title` | Text shown on the annotated overview image. |
 | `Catalogue filters` | Controls which catalogue/type prefixes are kept. Remove `SDSS` or `Gaia` if you want fewer very faint candidates. |
-| `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, and `Deep field`. Presets do not change the current source image, main object, or title. |
+| `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, and `Deep field`. Type a new name before saving to create a custom preset. |
 | `Label mode` | Chooses whether labels show numbers, object IDs, or both. |
 | `Label length` | Chooses short, medium, or full object names below preview tiles. `Medium` keeps the classic compact labels. |
 | `Object type` | Controls the SIMBAD object family. Use `Galaxies only` for the normal workflow, `Galaxies, quasars off` to suppress QSO/blazar-like entries, `Known galaxies priority` to avoid survey-only candidates, or `Stars only` for stellar fields. |
@@ -79,8 +79,12 @@ For most images, the defaults are a good starting point.
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
 | `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, or `Name` for alphabetical ordering. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
+| `Output mode` | Quick presentation style: scientific, showcase, poster, or discovery map. |
+| `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. |
+| `Highlight showcase objects` | Draws stronger boxes/labels for the first five output objects. |
+| `Colour-code object classes` | Uses different annotation colours for main targets, classic galaxies, quasars, and stellar catalogue entries. |
+| `Show advanced controls` | Reveals manual keep/remove, CSV/HTML report export, redshift, and auto-title controls. |
 | `Reset to defaults` | Restores the default settings. |
-| `Export CSV` | Exports the latest result table as CSV. |
 
 ## Result Table And Preview Inspector
 
@@ -97,7 +101,7 @@ The table includes:
 
 Click a row in the result table to inspect that object in the embedded preview panel below the table. The panel stays hidden until a result grid has been built, then shows a two-part inspector: a zoomed overview context on the left and the generated crop on the right.
 
-The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects.
+The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects. With advanced controls enabled, selected rows can be marked as kept or removed, then re-rendered with `Render kept`.
 
 ## Tips
 
@@ -109,7 +113,10 @@ The rendered PixInsight image windows are static outputs, so the result table is
 - If the final image becomes very large, reduce `Preview patch` or `Max rows`.
 - If labels clutter the overview, use `Numbers` label mode.
 - Save your favourite processing setup into one of the preset slots when a workflow feels right.
+- Type a new preset name before clicking `Save preset` to create a custom setup instead of overwriting a built-in slot.
 - Enable `Experimental SIMBAD size crops` when large or elongated galaxies are being cropped too tightly.
+- Use `Top 5 object notes` for educational/shareable outputs, but leave it off for cleaner pure annotation plates.
+- Use advanced manual curation when the automatic filters leave a few false positives that only a human eye can judge.
 - Use `Label length > Full` when preparing outputs where complete object names matter more than compact spacing.
 - Use `Object type > Galaxies, quasars off` if quasar-like catalogue entries are not useful for your presentation.
 - Use `Catalogue priority > Prefer NGC/IC` when you want classic NGC/IC names to win over Messier aliases where possible.
@@ -139,6 +146,15 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.1.8
+
+- Added a visible `Output mode` control for scientific, showcase, poster, and discovery-map workflows.
+- Added optional top-five object notes in the final composite output.
+- Added showcase highlighting and optional colour-coded annotation classes.
+- Added an advanced controls section with manual keep/remove, curated re-rendering, HTML report export, redshift inclusion, and optional auto-title.
+- Added custom preset names so users can save new presets instead of overwriting built-in presets.
+- Added redshift metadata to SIMBAD parsing, CSV output, HTML reports, and optional notes.
 
 ### 1.1.7
 
