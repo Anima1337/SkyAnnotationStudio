@@ -79,12 +79,40 @@ For most images, the defaults are a good starting point.
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
 | `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, or `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
-| `Output mode` | Quick presentation style: scientific, showcase, poster, or discovery map. |
+| `Output mode` | Quick presentation style. `Scientific` keeps dense numeric+ID annotations, `Showcase` balances presentation and discovery, `Poster` favours cleaner output with fewer objects, and `Discovery Map` keeps many small candidates for inspection. |
 | `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. |
 | `Highlight showcase objects` | Draws stronger boxes/labels for the first five output objects. |
-| `Colour-code object classes` | Uses different annotation colours for main targets, classic galaxies, quasars, and stellar catalogue entries. |
+| `Colour-code object classes` | Uses different annotation colours for object families and adds a legend to the final image. Yellow is the main target, cyan is Messier/NGC/IC, purple is quasar/AGN-like, gold is Gaia/stellar catalogue, and blue is other galaxy/survey objects. |
 | `Show advanced controls` | Reveals manual keep/remove, auto-review scrolling, CSV/HTML report export, redshift, and auto-title controls. |
+| `Show log` | Shows or hides the detailed run log in the script dialog. The PixInsight Process Console still receives the same messages either way. |
 | `Reset to defaults` | Restores the default settings. |
+
+## Output Modes
+
+The `Output mode` control applies a small bundle of presentation defaults before each run:
+
+| Mode | Best for | Behaviour |
+| --- | --- | --- |
+| `Scientific` | Dense reference plates and object identification. | Uses numeric+ID labels, balanced visibility filtering, and default catalogue-style ordering unless `Redshift` sorting is selected. |
+| `Showcase` | General-purpose final images. | Keeps your chosen sort/filter choices and is the safest default for attractive annotated outputs. |
+| `Poster` | Cleaner presentation images. | Uses stricter visibility filtering, fewer objects, numeric labels, and highlighted showcase objects. |
+| `Discovery Map` | Exploring as many candidates as possible. | Keeps more objects, uses permissive filtering, and favours image-contrast ordering unless `Redshift` sorting is selected. |
+
+If `Sort by > Redshift` is selected, output modes no longer overwrite it. Objects with usable SIMBAD redshift are sorted approximately farthest-to-nearest; objects without redshift are kept after those.
+
+## Colour Legend
+
+When `Colour-code object classes` is enabled, annotations and preview-grid numbers use these colours:
+
+| Colour | Meaning |
+| --- | --- |
+| Yellow | Configured main target, for example `M81`. |
+| Cyan | Classic catalogue objects such as Messier, NGC, and IC entries. |
+| Purple | Quasar, AGN, blazar, or similar active-galaxy candidates from SIMBAD. |
+| Gold | Gaia or stellar-catalogue style entries. |
+| Blue | Other accepted galaxy/survey objects, such as LEDA, SDSS, 2MASX, UGC, MCG, and similar catalogues. |
+
+The same legend is added to the bottom of the final composite image when colour coding is active.
 
 ## Result Table And Preview Inspector
 
@@ -103,7 +131,9 @@ Click a row in the result table to inspect that object in the embedded preview p
 
 The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects. With advanced controls enabled, selected rows can be marked as kept or removed, then re-rendered with `Render kept`.
 
-Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys.
+Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys. The default delay is `100 ms`; increase it if your PixInsight session feels busy while preview crops are being inspected.
+
+The run log can be hidden with `Show log` to keep the dialog compact. Each run still reports the elapsed execution time in the log and in the PixInsight Process Console.
 
 ## Tips
 
@@ -128,7 +158,8 @@ Double-click the `Keep` cell in the result table to toggle a row between `Yes` a
 - Use `Sort by > Redshift` for a depth-style presentation; objects without SIMBAD redshift are kept after the redshift-ranked objects.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
 - Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
-- Use `Start auto-review` in the advanced controls to step through previews hands-free while manually toggling obvious false positives.
+- Use `Start auto-review` in the advanced controls to step through previews hands-free while manually toggling obvious false positives. If the UI feels strained, raise the delay from `100 ms` to `300-800 ms`.
+- Disable `Show log` if you want a smaller script window, or enable it when you want detailed diagnostics after a run.
 
 ## How It Works
 
@@ -150,6 +181,16 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.0
+
+- Stabilised auto-review with a one-shot timer loop and re-entry guard to reduce PixInsight/V8 UI crashes.
+- Changed the auto-review default/minimum delay to `100 ms`.
+- Added a `Show log` toggle so the dialog can stay compact while still logging to the PixInsight Process Console.
+- Added elapsed execution time messages after normal and curated renders.
+- Added a colour legend footer to the final composite when object-class colour coding is enabled.
+- Expanded tooltips and README explanations for output modes, colour classes, visibility filtering, auto-review, and log behaviour.
+- Increased the remembered/default dialog size floor to avoid the compressed-button layout seen in smaller windows.
 
 ### 1.1.9
 
