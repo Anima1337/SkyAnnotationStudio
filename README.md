@@ -131,7 +131,7 @@ Click a row in the result table to inspect that object in the embedded preview p
 
 The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects. With advanced controls enabled, selected rows can be marked as kept or removed, then re-rendered with `Render kept`.
 
-Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys. The default delay is `100 ms`; during auto-review the inspector uses a lightweight crop-only preview so the Stop button remains responsive. Click a row manually when you want the full context-plus-crop inspector.
+Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys. The default delay is `100 ms`; during auto-review the inspector uses a lightweight crop-only preview so the dedicated `Stop` button remains responsive. Click a row manually when you want the full context-plus-crop inspector.
 
 The run log can be hidden with `Show log` to keep the dialog compact. Each run still reports the elapsed execution time in the log and in the PixInsight Process Console.
 
@@ -181,6 +181,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.2
+
+- Added a dedicated `Stop` button for auto-review instead of relying on a relabelled Start/Stop toggle during timer activity.
+- Added extra event-loop checkpoints before and after timed auto-review steps so pending Stop clicks can be processed before the timer restarts.
+- Made the final composite always include an object colour legend footer explaining the class colours.
 
 ### 1.2.1
 
