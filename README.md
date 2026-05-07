@@ -131,7 +131,7 @@ Click a row in the result table to inspect that object in the embedded preview p
 
 The rendered PixInsight image windows are static outputs, so the result table is the interactive selector for jumping between preview objects. With advanced controls enabled, selected rows can be marked as kept or removed, then re-rendered with `Render kept`.
 
-Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys. The default delay is `100 ms`; increase it if your PixInsight session feels busy while preview crops are being inspected.
+Double-click the `Keep` cell in the result table to toggle a row between `Yes` and `No`. `Start auto-review` steps through the table automatically at the selected delay, which makes blank or weak crops easier to spot without manually pressing the arrow keys. The default delay is `100 ms`; during auto-review the inspector uses a lightweight crop-only preview so the Stop button remains responsive. Click a row manually when you want the full context-plus-crop inspector.
 
 The run log can be hidden with `Show log` to keep the dialog compact. Each run still reports the elapsed execution time in the log and in the PixInsight Process Console.
 
@@ -181,6 +181,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.1
+
+- Made auto-review stop responsiveness more reliable by adding an explicit stop-request flag and event-processing checkpoints before restarting the timer.
+- Changed auto-review inspection to a lightweight crop-only preview mode instead of rebuilding the full context crop on every timed step.
+- Kept manual row selection unchanged: clicking a table row still shows the full context-plus-preview inspector.
 
 ### 1.2.0
 
