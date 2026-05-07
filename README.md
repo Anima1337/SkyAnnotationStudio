@@ -80,9 +80,9 @@ For most images, the defaults are a good starting point.
 | `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, or `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
 | `Output mode` | Quick presentation style. `Scientific` keeps dense numeric+ID annotations, `Showcase` balances presentation and discovery, `Poster` favours cleaner output with fewer objects, and `Discovery Map` keeps many small candidates for inspection. |
-| `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. |
+| `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. Known showcase targets use built-in human-readable descriptions where available; other objects fall back to catalogue, size, redshift, and visibility context. |
 | `Highlight showcase objects` | Draws stronger boxes/labels for the first five output objects. |
-| `Colour-code object classes` | Uses different annotation colours for object families and adds a legend to the final image. Yellow is the main target, cyan is Messier/NGC/IC, purple is quasar/AGN-like, gold is Gaia/stellar catalogue, and blue is other galaxy/survey objects. |
+| `Colour-code object classes` | Uses different annotation colours for object families and adds a legend to the final image. Yellow is the main target, cyan is Messier/NGC/IC, purple is quasar/AGN-like, green is Gaia/stellar catalogue, and blue is other galaxy/survey objects. |
 | `Show advanced controls` | Reveals manual keep/remove, auto-review scrolling, CSV/HTML report export, redshift, and auto-title controls. |
 | `Show log` | Shows or hides the detailed run log in the script dialog. The PixInsight Process Console still receives the same messages either way. |
 | `Reset to defaults` | Restores the default settings. |
@@ -109,7 +109,7 @@ When `Colour-code object classes` is enabled, annotations and preview-grid numbe
 | Yellow | Configured main target, for example `M81`. |
 | Cyan | Classic catalogue objects such as Messier, NGC, and IC entries. |
 | Purple | Quasar, AGN, blazar, or similar active-galaxy candidates from SIMBAD. |
-| Gold | Gaia or stellar-catalogue style entries. |
+| Green | Gaia or stellar-catalogue style entries. |
 | Blue | Other accepted galaxy/survey objects, such as LEDA, SDSS, 2MASX, UGC, MCG, and similar catalogues. |
 
 The same legend is added to the bottom of the final composite image when colour coding is active.
@@ -181,6 +181,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.3
+
+- Reworked top object notes to use more natural educational descriptions for known showcase objects such as M81, M82, NGC 3077, NGC 2976, NGC 2959, NGC 2961, UGC 5302, and MCG+12-09-064.
+- Improved fallback object notes so unknown catalogue objects read as explanatory sentences instead of raw metadata snippets.
+- Changed Gaia/stellar catalogue class colouring from gold to green so it no longer looks too similar to the yellow main-target colour.
 
 ### 1.2.2
 
