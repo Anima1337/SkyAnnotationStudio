@@ -190,6 +190,7 @@ Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is 
 - Added a PixInsight 1.9.4+/V8 compatibility hardening pass.
 - Removed Sky Annotation Studio's own configuration dependency on `ObjectWithSettings`, reducing early reliance on PixInsight's bundled `AdP/WCSmetadata.jsh` helper code.
 - Wrapped persistent settings reads/writes so corrupt settings or runtime-specific Settings API issues do not prevent the dialog from opening.
+- Fixed legacy catalogue-filter settings saved with `|` separators being loaded as one invalid catalogue name.
 - Re-enabled repository compatibility metadata for PixInsight `1.9.4+`.
 
 ### 1.2.6

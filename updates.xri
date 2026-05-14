@@ -4,7 +4,7 @@
       <p>Sky Annotation Studio update repository.</p>
    </description>
    <platform os="all" arch="noarch" version="1.8.9:9.9.9">
-      <package fileName="SkyAnnotationStudio-1.2.7.zip" sha1="0a02ae3e1accc89c1b164e62cd6097a0d2a3f849" type="script" releaseDate="20260514">
+      <package fileName="SkyAnnotationStudio-1.2.7.zip" sha1="bb9a5ebbcf122856e820a2bafcccf9a56da58759" type="script" releaseDate="20260514">
          <title>Sky Annotation Studio</title>
          <description>
             <p>Native PixInsight script for SIMBAD-based galaxy annotation and preview generation.</p>
@@ -12,4 +12,4 @@
       </package>
    </platform>
 </xri>
-<Signature developerId="coldt_astrophotography" timestamp="2026-05-14T18:48:58.422Z" encoding="Base64">3I3lx4XhH/+j0ySDPYwgomwNXCiFtymuj4+eHEYe3Obryf1Rx3XBIwMcghcLD2r8Lgay+73cVJDWZdy2JzmjAQ==</Signature>
+<Signature developerId="coldt_astrophotography" timestamp="2026-05-14T19:07:19.119Z" encoding="Base64">63ZdXS5rqZcleBr76KG38PEfv8JK3isZVxDKubyvKl+AGiuYcvwn29dxdmhBXacw8XoSW159+fAH5gEqBbdDAw==</Signature>
