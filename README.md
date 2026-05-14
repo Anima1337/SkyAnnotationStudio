@@ -185,6 +185,13 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
 
+### 1.2.7
+
+- Added a PixInsight 1.9.4+/V8 compatibility hardening pass.
+- Removed Sky Annotation Studio's own configuration dependency on `ObjectWithSettings`, reducing early reliance on PixInsight's bundled `AdP/WCSmetadata.jsh` helper code.
+- Wrapped persistent settings reads/writes so corrupt settings or runtime-specific Settings API issues do not prevent the dialog from opening.
+- Re-enabled repository compatibility metadata for PixInsight `1.9.4+`.
+
 ### 1.2.6
 
 - Added `Sort by > Object class / colour` to group the preview grid by the same classes shown in the colour legend.
