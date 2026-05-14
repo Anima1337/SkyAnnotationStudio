@@ -70,6 +70,7 @@ For most images, the defaults are a good starting point.
 | `Preset` | Applies or saves reusable processing settings such as `Galaxy field`, `Widefield`, `Messier target`, `Deep field`, `Messier showcase`, `NGC/IC showcase`, `Deep survey`, and `Minimal clean labels`. Type a new name before saving to create a custom preset. |
 | `Label mode` | Chooses whether labels show numbers, object IDs, or both. |
 | `Label length` | Chooses short, medium, or full object names below preview tiles. `Medium` keeps the classic compact labels. |
+| `Preview label alignment` | Chooses whether preview-grid numbers and object names are drawn left-aligned or centred below each crop. |
 | `Object type` | Controls the SIMBAD object family. Use `Galaxies only` for the normal workflow, `Galaxies, quasars off` to suppress QSO/blazar-like entries, `Known galaxies priority` to avoid survey-only candidates, or `Stars only` for stellar fields. |
 | `Catalogue priority` | Chooses which catalogue aliases win during naming and duplicate handling. Prefer Messier, prefer NGC/IC, favour known catalogues, or hide Gaia entries when a stronger duplicate is nearby. |
 | `Experimental SIMBAD size crops` | Uses SIMBAD galaxy major/minor axis values, where available, to enlarge crops for physically large or elongated galaxies. |
@@ -77,7 +78,7 @@ For most images, the defaults are a good starting point.
 | `Patch scale %` | Global crop scale. Lower values zoom in, higher values zoom out. |
 | `Preview patch` | Rendered tile size in the preview grid. This affects grid resolution, not the selected sky area. |
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
-| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, or `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available. |
+| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available, or `Object class / colour` to group the grid by the colour legend classes. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
 | `Output mode` | Quick presentation style. `Scientific` keeps dense numeric+ID annotations, `Showcase` balances presentation and discovery, `Poster` favours cleaner output with fewer objects, and `Discovery Map` keeps many small candidates for inspection. |
 | `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. Known showcase targets use built-in human-readable descriptions where available; other objects fall back to catalogue, size, redshift, and visibility context. |
@@ -156,6 +157,8 @@ The run log can be hidden with `Show log` to keep the dialog compact. Each run s
 - Use `Sort by > Visible size` when you want the most prominent galaxies first.
 - Use `Sort by > Image contrast` when you want the clearest detected objects first.
 - Use `Sort by > Redshift` for a depth-style presentation; objects without SIMBAD redshift are kept after the redshift-ranked objects.
+- Use `Sort by > Object class / colour` when you want the preview grid grouped by main target, Messier/NGC/IC, quasar-like entries, Gaia/stellar entries, and other survey objects.
+- Use `Preview label alignment > Centred` for a cleaner poster-like grid where the tile number and object name sit centred with the crop.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
 - Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
 - Use `Start auto-review` in the advanced controls to step through previews hands-free while manually toggling obvious false positives. The minimum delay is `150 ms`; if the UI feels strained, raise the delay to `300-800 ms`.
@@ -181,6 +184,12 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.6
+
+- Added `Sort by > Object class / colour` to group the preview grid by the same classes shown in the colour legend.
+- Added `Preview label alignment` with left-aligned and centred grid-label options.
+- Preserved object-class sorting when applying output modes, matching the existing redshift-sort behaviour.
 
 ### 1.2.5
 
