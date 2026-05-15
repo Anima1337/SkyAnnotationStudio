@@ -78,7 +78,7 @@ For most images, the defaults are a good starting point.
 | `Patch scale %` | Global crop scale. Lower values zoom in, higher values zoom out. |
 | `Preview patch` | Rendered tile size in the preview grid. This affects grid resolution, not the selected sky area. |
 | `Max rows` | Maximum number of preview objects kept after filtering. Higher values go deeper, but can include more faint or ambiguous objects. |
-| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available, or `Object class / colour` to group the grid by the colour legend classes. |
+| `Sort by` | Controls final preview order. Use `Visible size` for showcase-style output, `Image contrast` for the clearest crops first, `Distance from centre` for centre-first browsing, `Name` for alphabetical ordering, `Redshift` for approximate farthest-to-nearest depth ordering when SIMBAD redshift is available, or `Object class / colour` to group the grid by the dominant colour legend class. |
 | `Visibility filter` | Controls how aggressively low-contrast, nearly blank preview crops are removed. `Balanced` is the recommended default. |
 | `Output mode` | Quick presentation style. `Scientific` keeps dense numeric+ID annotations, `Showcase` balances presentation and discovery, `Poster` favours cleaner output with fewer objects, and `Discovery Map` keeps many small candidates for inspection. |
 | `Top 5 object notes` | Adds a compact educational notes footer for the most prominent selected objects. Known showcase targets use built-in human-readable descriptions where available; other objects fall back to catalogue, size, redshift, and visibility context. |
@@ -113,7 +113,7 @@ When `Colour-code object classes` is enabled, annotations and preview-grid numbe
 | Green | Gaia or stellar-catalogue style entries. |
 | Deep blue | Other accepted galaxy/survey objects, such as LEDA, SDSS, 2MASX, UGC, MCG, and similar catalogues. |
 
-The same legend is added to the bottom of the final composite image when colour coding is active.
+The same legend is added to the bottom of the final composite image when colour coding is active. If an object belongs to more than one useful class, for example a Messier object that is also AGN-like, its crop box can use a split border: the upper half shows the catalogue class colour and the lower half shows the secondary active/stellar class colour. Sorting still follows the dominant displayed class so colour-grouped grids stay consistent.
 
 ## Result Table And Preview Inspector
 
@@ -157,7 +157,7 @@ The run log can be hidden with `Show log` to keep the dialog compact. Each run s
 - Use `Sort by > Visible size` when you want the most prominent galaxies first.
 - Use `Sort by > Image contrast` when you want the clearest detected objects first.
 - Use `Sort by > Redshift` for a depth-style presentation; objects without SIMBAD redshift are kept after the redshift-ranked objects.
-- Use `Sort by > Object class / colour` when you want the preview grid grouped by main target, Messier/NGC/IC, quasar-like entries, Gaia/stellar entries, and other survey objects.
+- Use `Sort by > Object class / colour` when you want the preview grid grouped by main target, quasar/AGN-like entries, Messier/NGC/IC, Gaia/stellar entries, and other survey objects. Multi-class objects can show split crop borders while staying in their dominant colour group.
 - Use `Preview label alignment > Centred` for a cleaner poster-like grid where the tile number and object name sit centred with the crop.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
 - Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
@@ -184,6 +184,11 @@ The filtering is intentionally conservative. The script tries to remove obvious 
 ## Changelog
 
 Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is `1.1.0`, not `1.0.10`, so update repositories and file listings sort naturally.
+
+### 1.2.8
+
+- Fixed `Sort by > Object class / colour` so the object order follows the same dominant class used for annotation and preview-number colour.
+- Added split crop borders for multi-class objects, such as Messier/NGC/IC objects that are also AGN-like, so secondary class membership remains visible without breaking colour-group sorting.
 
 ### 1.2.7
 
