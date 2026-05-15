@@ -113,7 +113,7 @@ When `Colour-code object classes` is enabled, annotations and preview-grid numbe
 | Green | Gaia or stellar-catalogue style entries. |
 | Deep blue | Other accepted galaxy/survey objects, such as LEDA, SDSS, 2MASX, UGC, MCG, and similar catalogues. |
 
-The same legend is added to the bottom of the final composite image when colour coding is active. If an object belongs to more than one useful class, for example a Messier object that is also AGN-like, its crop box can use a split border: the upper half shows the catalogue class colour and the lower half shows the secondary active/stellar class colour. Sorting still follows the dominant displayed class so colour-grouped grids stay consistent.
+The same legend is added to the bottom of the final composite image when colour coding is active. If an object belongs to more than one useful class, for example a Messier object that is also AGN-like, its crop box can use a split border: the upper half shows the catalogue class colour and the lower half shows the secondary active/stellar class colour. Colour-group sorting follows the legend order: main target, Messier/NGC/IC, quasar/AGN-like, Gaia/stellar catalogue, then other survey objects.
 
 ## Result Table And Preview Inspector
 
@@ -157,7 +157,7 @@ The run log can be hidden with `Show log` to keep the dialog compact. Each run s
 - Use `Sort by > Visible size` when you want the most prominent galaxies first.
 - Use `Sort by > Image contrast` when you want the clearest detected objects first.
 - Use `Sort by > Redshift` for a depth-style presentation; objects without SIMBAD redshift are kept after the redshift-ranked objects.
-- Use `Sort by > Object class / colour` when you want the preview grid grouped by main target, quasar/AGN-like entries, Messier/NGC/IC, Gaia/stellar entries, and other survey objects. Multi-class objects can show split crop borders while staying in their dominant colour group.
+- Use `Sort by > Object class / colour` when you want the preview grid grouped in the same order as the colour legend: main target, Messier/NGC/IC, quasar/AGN-like entries, Gaia/stellar entries, and other survey objects. Multi-class objects can show split crop borders while staying in their legend-order group.
 - Use `Preview label alignment > Centred` for a cleaner poster-like grid where the tile number and object name sit centred with the crop.
 - Use `Visibility filter > Strict` if too many blank-looking previews remain.
 - Use `Visibility filter > Permissive` or `Off` if the script removes faint objects you still want to inspect.
@@ -187,7 +187,7 @@ Versioning note: Patch releases stop at `.9`. The next release after `1.0.9` is 
 
 ### 1.2.8
 
-- Fixed `Sort by > Object class / colour` so the object order follows the same dominant class used for annotation and preview-number colour.
+- Fixed `Sort by > Object class / colour` so the object order follows the same class order shown in the final-image colour legend.
 - Added split crop borders for multi-class objects, such as Messier/NGC/IC objects that are also AGN-like, so secondary class membership remains visible without breaking colour-group sorting.
 
 ### 1.2.7
